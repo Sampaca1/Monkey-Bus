@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bm3d6ae76klng"]
+
+[ext_resource type="Theme" uid="uid://bshwuryu0ks7r" path="res://Theme.tres" id="1_uubjt"]
+
+[node name="Control" type="Control" unique_id=165587927]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_uubjt")
+
+[node name="Label" type="Label" parent="." unique_id=373200284]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+text = "Monkey Bus"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2138962040]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="VBoxContainer" unique_id=337601705]
+layout_mode = 2
+disabled = true
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer" unique_id=1641021125]
+layout_mode = 2
+disabled = true
+text = "Join"
