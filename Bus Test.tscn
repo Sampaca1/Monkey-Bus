@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://dmr0rnld4uojx"]
+
+[ext_resource type="Script" uid="uid://bi4hqxtop1vu" path="res://car.gd" id="1_fji6l"]
+[ext_resource type="Texture2D" uid="uid://cnbbdrh6notqd" path="res://icon.svg" id="1_y2yqg"]
+[ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Basic Bus.fbx" id="3_73ytm"]
+
+[sub_resource type="Gradient" id="Gradient_73ytm"]
+offsets = PackedFloat32Array(0, 0.43076923)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r1q5g"]
+gradient = SubResource("Gradient_73ytm")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2ve6t"]
+rayleigh_color = Color(0, 0.23766667, 0.46, 1)
+mie_eccentricity = 0.95
+mie_color = Color(1, 0.582, 0.24000001, 1)
+turbidity = 6.25
+sun_disk_scale = 16.05
+ground_color = Color(0, 0, 0, 1)
+night_sky = SubResource("GradientTexture2D_r1q5g")
+
+[sub_resource type="Sky" id="Sky_73ytm"]
+sky_material = SubResource("PhysicalSkyMaterial_2ve6t")
+
+[sub_resource type="Environment" id="Environment_2ve6t"]
+background_mode = 2
+sky = SubResource("Sky_73ytm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytexw"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6eucl"]
+material = SubResource("StandardMaterial3D_ytexw")
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.251
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6eucl"]
+size = Vector3(2.0136719, 1.5024672, 6.9470215)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fji6l"]
+albedo_texture = ExtResource("1_y2yqg")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_6eucl"]
+material = SubResource("StandardMaterial3D_fji6l")
+size = Vector3(500, 1, 500)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fji6l"]
+data = PackedVector3Array(-250, 0.5, 250, 250, 0.5, 250, -250, -0.5, 250, 250, 0.5, 250, 250, -0.5, 250, -250, -0.5, 250, 250, 0.5, -250, -250, 0.5, -250, 250, -0.5, -250, -250, 0.5, -250, -250, -0.5, -250, 250, -0.5, -250, 250, 0.5, 250, 250, 0.5, -250, 250, -0.5, 250, 250, 0.5, -250, 250, -0.5, -250, 250, -0.5, 250, -250, 0.5, -250, -250, 0.5, 250, -250, -0.5, -250, -250, 0.5, 250, -250, -0.5, 250, -250, -0.5, -250, 250, 0.5, 250, -250, 0.5, 250, 250, 0.5, -250, -250, 0.5, 250, -250, 0.5, -250, 250, 0.5, -250, -250, -0.5, 250, 250, -0.5, 250, -250, -0.5, -250, 250, -0.5, 250, 250, -0.5, -250, -250, -0.5, -250)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ytexw"]
+size = Vector3(0.74902344, 0.6435547, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ve6t"]
+
+[node name="Node3D" type="Node3D" unique_id=2027359982]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=632122251]
+environment = SubResource("Environment_2ve6t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1117083804]
+transform = Transform3D(0.18540263, -0.39570612, -0.89946795, -0.8459468, -0.5300159, 0.058801048, -0.5000001, 0.75, -0.4330126, 0, 0, 0)
+light_color = Color(0.99, 0.49995005, 0.09900002, 1)
+light_energy = 5.0
+shadow_enabled = true
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="." unique_id=152130235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2069508, 0)
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.12, 0)
+script = ExtResource("1_fji6l")
+
+[node name="Basic Bus" parent="VehicleBody3D" unique_id=771892940 instance=ExtResource("3_73ytm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.43444812, 0)
+
+[node name="FL" type="VehicleWheel3D" parent="VehicleBody3D" unique_id=75187370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.253, 2.97)
+use_as_steering = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+damping_compression = 1.9
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/FL" unique_id=332192073]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="FR" type="VehicleWheel3D" parent="VehicleBody3D" unique_id=630938026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.253, 2.952)
+use_as_steering = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+damping_compression = 1.9
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/FR" unique_id=1912917825]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="BR" type="VehicleWheel3D" parent="VehicleBody3D" unique_id=469111135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.25, -3)
+use_as_traction = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+damping_compression = 1.9
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/BR" unique_id=1688978716]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="BL" type="VehicleWheel3D" parent="VehicleBody3D" unique_id=188152125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.25, -3)
+use_as_traction = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+damping_compression = 1.9
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/BL" unique_id=1757975532]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D" unique_id=325762200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42789567, 0)
+shape = SubResource("BoxShape3D_6eucl")
+
+[node name="Camera3D" type="Camera3D" parent="VehicleBody3D" unique_id=197461704]
+transform = Transform3D(-1, 5.8209925e-16, 8.742278e-08, 2.2703508e-08, 0.96568996, 0.25969782, -8.442329e-08, 0.25969782, -0.96568996, 0, 5.6833262, -6.319229)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1819081739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_6eucl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=25949821]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=622559512]
+shape = SubResource("ConcavePolygonShape3D_fji6l")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1270500361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0273647, 0.91793936, -9.77083)
+mesh = SubResource("BoxMesh_ytexw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=2069674884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6409955, 1.8342295, -9.77083)
+mesh = SubResource("BoxMesh_2ve6t")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2050274131]
+transform = Transform3D(1, 0, 0, 0, 0.9468152, 0.3217781, 0, -0.3217781, 0.9468152, 0.17978859, 1.3373957, 94.986275)
+use_collision = true
+size = Vector3(7.4414063, 1, 12.366821)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1893445104]
+transform = Transform3D(1, 0, 0, 0, 0.9799981, 0.1990068, 0, -0.1990068, 0.9799981, 0.17978859, 6.0778785, 118.90579)
+use_collision = true
+size = Vector3(7.4414063, 1, 25.771423)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1123345721]
+transform = Transform3D(1, 0, 0, 0, 0.9973109, 0.073287904, 0, -0.073287904, 0.9973109, 0.17978859, 4.2050195, 154.65138)
+use_collision = true
+size = Vector3(4, 1, 25.771)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=529658742]
+transform = Transform3D(0.8660254, 0.036643952, -0.49865544, 0, 0.9973108, 0.0732879, 0.49999997, -0.06346918, 0.86369646, -6.2912126, 5.910261, 177.38226)
+use_collision = true
+size = Vector3(4, 1, 25.771)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=2138026389]
+transform = Transform3D(0.5, 0.06346919, -0.86369646, 0, 0.9973107, 0.07328789, 0.8660253, -0.036643945, 0.49865526, -23.05278, 7.6423216, 193.92262)
+use_collision = true
+size = Vector3(4, 1, 25.771)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=328555470]
+transform = Transform3D(2.9802322e-08, 0.07328789, -0.99731064, 4.9909454e-10, 0.9973107, 0.07328788, 0.99999994, 3.7252903e-09, -8.940697e-08, -46.073074, 9.393145, 200.00966)
+use_collision = true
+size = Vector3(4, 1, 25.771)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=1782048027]
+transform = Transform3D(-0.70710677, 0.05182236, -0.70520496, 4.990946e-10, 0.9973108, 0.07328789, 0.70710677, 0.051822368, -0.7052052, -66.30417, 10.789049, 191.56065)
+use_collision = true
+size = Vector3(4, 1, 25.771)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="." unique_id=2041026947]
+transform = Transform3D(-0.99999994, -3.7252903e-09, 1.7881393e-07, 4.9909477e-10, 0.99731094, 0.0732879, 0, 0.07328789, -0.9973106, -74.026245, 12.346745, 170.93422)
+use_collision = true
+size = Vector3(4, 1, 25.771)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="." unique_id=143873134]
+transform = Transform3D(-0.9999999, -3.7252916e-09, 1.7881392e-07, 3.5291373e-10, 0.7570277, -0.6533827, -3.5291203e-10, -0.65338296, -0.75702745, -74.026245, 10.036907, 155.0054)
+use_collision = true
+size = Vector3(4, 1, 10.01343)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="." unique_id=121176927]
+transform = Transform3D(-0.9999999, -3.725297e-09, 1.7881392e-07, 4.322291e-10, 0.90034056, -0.4351861, -2.4954788e-10, -0.43518627, -0.90034026, -74.026245, 4.77654, 147.13367)
+use_collision = true
+size = Vector3(4, 1, 10.01343)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="." unique_id=1461359027]
+transform = Transform3D(-0.9999999, -3.7252907e-09, 1.7881392e-07, 4.8208876e-10, 0.98229665, -0.18733226, -1.2917378e-10, -0.18733239, -0.9822963, -74.026245, 0.6127921, 134.01978)
+use_collision = true
+size = Vector3(4, 1, 18.09375)
