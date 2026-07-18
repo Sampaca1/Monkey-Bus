@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Monkey Bus"
 run/main_scene="res://Menu.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
-boot_splash/bg_color=Color(0.5019608, 0.80784315, 1, 1)
+config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="uid://m3vgg33hyd8y"
 config/icon="uid://c8665wyv33sqi"
 

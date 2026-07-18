@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bm3d6ae76klng"]
 
 [ext_resource type="Theme" uid="uid://bshwuryu0ks7r" path="res://Theme.tres" id="1_uubjt"]
+[ext_resource type="Script" uid="uid://bbk1j5gkigg0f" path="res://menu.gd" id="2_5yleq"]
 
 [node name="Control" type="Control" unique_id=165587927]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_uubjt")
+script = ExtResource("2_5yleq")
 
 [node name="Label" type="Label" parent="." unique_id=373200284]
 layout_mode = 1
