@@ -29,8 +29,8 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("boost") and boost > 0:
 		boosting = true
-		SPEED = 500
-		boost -= 25*delta
+		SPEED = 450
+		boost -= 30*delta
 	else:
 		boosting = false
 		SPEED = 150
