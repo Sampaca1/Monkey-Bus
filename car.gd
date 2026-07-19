@@ -10,23 +10,26 @@ extends VehicleBody3D
 
 @onready var cam = $Camera3D
 
-const SPEED = 100
+const SPEED = 150
+const REVERSE = -50
 const BRAKE = 5
 const STEER = 0.5
+const MIN_FOV = 70
 
 var maxSteer = 30
-
 var braking = false
 
 func _process(delta: float) -> void:
+	var speed = linear_velocity.dot(-global_transform.basis.z)
+	$"../Label".text = "Speed: " + str(round(-speed*10)/10)
+	
 	if Input.is_action_pressed("backward"):
 		braking = true
-		var speed = linear_velocity.dot(-global_transform.basis.z)
 		for wheel in bws:
-			if speed > 0.1:
+			if speed > 0:
 				wheel.brake = BRAKE
 			else:
-				wheel.engine_force = -SPEED
+				wheel.engine_force = REVERSE
 	else:
 		braking = false
 		for wheel in bws:
@@ -48,3 +51,8 @@ func _process(delta: float) -> void:
 			wheel.steering = move_toward(wheel.steering, 0, 0.05)
 	if Input.is_action_pressed("Restart"):
 		get_tree().change_scene_to_file("res://3d.tscn")
+	
+	if speed < 0:
+		cam.fov = MIN_FOV - (speed/4)
+	else:
+		cam.fov = max(cam.fov - 0.2, MIN_FOV)

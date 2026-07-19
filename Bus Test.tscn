@@ -55,6 +55,11 @@ size = Vector3(0.74902344, 0.6435547, 1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ve6t"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_0njnb"]
+font_size = 24
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Node3D" type="Node3D" unique_id=2027359982]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=632122251]
@@ -132,7 +137,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42789567, 0)
 shape = SubResource("BoxShape3D_6eucl")
 
 [node name="Camera3D" type="Camera3D" parent="VehicleBody3D" unique_id=197461704]
-transform = Transform3D(-1, 5.8209925e-16, 8.742278e-08, 2.2703508e-08, 0.96568996, 0.25969782, -8.442329e-08, 0.25969782, -0.96568996, 0, 5.6833262, -6.319229)
+transform = Transform3D(-1, 5.8209925e-16, 8.742278e-08, 2.2703508e-08, 0.96568996, 0.25969782, -8.442329e-08, 0.25969782, -0.96568996, 0, 5.683, -9)
+fov = 70.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1819081739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01143074, -0.5, 0.0134551525)
@@ -205,3 +211,11 @@ size = Vector3(4, 1, 10.01343)
 transform = Transform3D(-0.9999999, -3.7252907e-09, 1.7881392e-07, 4.8208876e-10, 0.98229665, -0.18733226, -1.2917378e-10, -0.18733239, -0.9822963, -74.026245, 0.6127921, 134.01978)
 use_collision = true
 size = Vector3(4, 1, 18.09375)
+
+[node name="Label" type="Label" parent="." unique_id=469673805]
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 179.0
+offset_bottom = 39.0
+text = "Speed: 0.0"
+label_settings = SubResource("LabelSettings_0njnb")
