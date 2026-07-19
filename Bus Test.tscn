@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dmr0rnld4uojx"]
 
 [ext_resource type="Script" uid="uid://bi4hqxtop1vu" path="res://car.gd" id="1_fji6l"]
+[ext_resource type="Script" uid="uid://ql7k324v5u16" path="res://progress_bar.gd" id="3_0njnb"]
 [ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Basic Bus.fbx" id="3_73ytm"]
 
 [sub_resource type="Gradient" id="Gradient_73ytm"]
@@ -219,3 +220,19 @@ offset_right = 179.0
 offset_bottom = 39.0
 text = "Speed: 0.0"
 label_settings = SubResource("LabelSettings_0njnb")
+
+[node name="Label2" type="Label" parent="." unique_id=1732811697]
+offset_left = 8.0
+offset_top = 43.0
+offset_right = 179.0
+offset_bottom = 77.0
+text = "Boost:"
+label_settings = SubResource("LabelSettings_0njnb")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1064408097]
+offset_left = 90.0
+offset_top = 48.0
+offset_right = 391.0
+offset_bottom = 75.0
+value = 100.0
+script = ExtResource("3_0njnb")
