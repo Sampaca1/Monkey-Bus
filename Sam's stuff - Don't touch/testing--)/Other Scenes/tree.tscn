@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dwgcyctubjc1y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brfkd"]
+albedo_color = Color(0.48, 0.28, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uc1xx"]
+albedo_color = Color(0.06416674, 0.55, 0, 1)
+
+[node name="Tree" type="Node3D" unique_id=453627683]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=895797360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6163635, 0)
+use_collision = true
+height = 1.1780396
+material = SubResource("StandardMaterial3D_brfkd")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=35752901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7434938, 0)
+material_override = SubResource("StandardMaterial3D_uc1xx")
+use_collision = true
+radius = 1.4199219
+height = 3.189087
+sides = 12
+cone = true

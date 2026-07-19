@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ctl4ksw1se1wo"]
+
+[ext_resource type="Script" uid="uid://bp6rg1nlrf76b" path="res://Chunks/Scripts/Chunk loader.gd" id="1_y77e0"]
+[ext_resource type="PackedScene" uid="uid://rr8k0qwuj6fv" path="res://Buses/Bus 1.tscn" id="2_1slih"]
+[ext_resource type="PackedScene" uid="uid://e2o2hesat4ju" path="res://Other Scenes/sunset.tscn" id="3_4qf0y"]
+
+[node name="Test 2" type="Node3D" unique_id=575977860]
+script = ExtResource("1_y77e0")
+
+[node name="Bus 1" parent="." unique_id=981513023 instance=ExtResource("2_1slih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6292279, 0)
+
+[node name="Sunset" parent="." unique_id=228540117 instance=ExtResource("3_4qf0y")]

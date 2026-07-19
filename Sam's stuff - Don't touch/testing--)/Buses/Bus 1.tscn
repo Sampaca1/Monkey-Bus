@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://rr8k0qwuj6fv"]
+
+[ext_resource type="Script" uid="uid://bi4hqxtop1vu" path="res://Buses/Bus 1.gd" id="1_44mfa"]
+[ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Resources/Basic Bus.fbx" id="2_2tqcl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytexw"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6eucl"]
+material = SubResource("StandardMaterial3D_ytexw")
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.251
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6eucl"]
+size = Vector3(2.0136719, 1.5024672, 6.9470215)
+
+[node name="Bus 1" type="VehicleBody3D" unique_id=981513023]
+mass = 1000.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.12, 0)
+script = ExtResource("1_44mfa")
+
+[node name="Basic Bus" parent="." unique_id=725483567 instance=ExtResource("2_2tqcl")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.43444812, 0)
+
+[node name="FL" type="VehicleWheel3D" parent="." unique_id=224158530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.253, 2.97)
+use_as_steering = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+suspension_max_force = 8000.0
+damping_compression = 19.0
+damping_relaxation = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FL" unique_id=291731964]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="FR" type="VehicleWheel3D" parent="." unique_id=474731964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.253, 2.952)
+use_as_steering = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+suspension_max_force = 8000.0
+damping_compression = 19.0
+damping_relaxation = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FR" unique_id=2008614712]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="BR" type="VehicleWheel3D" parent="." unique_id=1437184023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.25, -3)
+use_as_traction = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+suspension_max_force = 8000.0
+damping_compression = 19.0
+damping_relaxation = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BR" unique_id=818695306]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="BL" type="VehicleWheel3D" parent="." unique_id=1913382876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.25, -3)
+use_as_traction = true
+wheel_radius = 0.35
+suspension_travel = 0.25
+suspension_stiffness = 100.0
+suspension_max_force = 8000.0
+damping_compression = 19.0
+damping_relaxation = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BL" unique_id=1344497216]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6eucl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2036252376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42789567, 0)
+shape = SubResource("BoxShape3D_6eucl")
+
+[node name="3rd Person" type="Camera3D" parent="." unique_id=998055444]
+transform = Transform3D(-1, 1.7033856e-15, -8.742276e-08, -6.9162382e-09, 0.99686563, 0.07911256, 8.7148756e-08, 0.07911256, -0.99686563, 0.012046099, 3.0514388, -4.7837257)

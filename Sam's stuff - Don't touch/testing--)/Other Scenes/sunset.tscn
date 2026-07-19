@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://e2o2hesat4ju"]
+
+[sub_resource type="Gradient" id="Gradient_qui1m"]
+offsets = PackedFloat32Array(0, 0.35384616, 0.6076923, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.6333333, 0, 1, 0.744, 0.93, 0.744, 1, 0.51, 0.97550005, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_urr7n"]
+gradient = SubResource("Gradient_qui1m")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nqxvq"]
+panorama = SubResource("GradientTexture2D_urr7n")
+
+[sub_resource type="Sky" id="Sky_j01yx"]
+sky_material = SubResource("PanoramaSkyMaterial_nqxvq")
+
+[sub_resource type="Environment" id="Environment_uffkp"]
+background_mode = 2
+sky = SubResource("Sky_j01yx")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Sunset" type="Node3D" unique_id=228540117]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=748598433]
+transform = Transform3D(0.18540262, -0.3957061, -0.89946795, -0.84594667, -0.53001565, 0.05880111, -0.50000006, 0.75, -0.43301257, 0, 0, 0)
+light_color = Color(0.99, 0.49995005, 0.09900002, 1)
+light_energy = 5.0
+shadow_enabled = true
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="." unique_id=1620992897]
+environment = SubResource("Environment_uffkp")
