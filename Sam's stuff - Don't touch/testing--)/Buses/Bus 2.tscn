@@ -27,6 +27,11 @@ size = Vector3(0.20648193, 1.4436646, 6.989746)
 [sub_resource type="BoxShape3D" id="BoxShape3D_srwig"]
 size = Vector3(0.5, 0.5, 0.5)
 
+[sub_resource type="LabelSettings" id="LabelSettings_d3h1w"]
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Bus 2" type="VehicleBody3D" unique_id=981513023 groups=["Bus"]]
 mass = 1000.0
 center_of_mass_mode = 1
@@ -131,5 +136,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.6596615)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=445869492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5616038, 0.09089863, 0.12885118)
 shape = SubResource("BoxShape3D_srwig")
+
+[node name="Label" type="Label" parent="." unique_id=744919819]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 125.0
+offset_bottom = 40.0
+text = "Speed: 0.0"
+label_settings = SubResource("LabelSettings_d3h1w")
 
 [connection signal="body_entered" from="Area3D" to="." method="_bodyEnteredDriverSeat"]

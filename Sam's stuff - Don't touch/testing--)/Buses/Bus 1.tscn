@@ -15,6 +15,11 @@ height = 0.251
 [sub_resource type="BoxShape3D" id="BoxShape3D_6eucl"]
 size = Vector3(2.0136719, 1.5024672, 6.9470215)
 
+[sub_resource type="LabelSettings" id="LabelSettings_e4klq"]
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Bus 1" type="VehicleBody3D" unique_id=981513023]
 mass = 1000.0
 center_of_mass_mode = 1
@@ -87,3 +92,11 @@ shape = SubResource("BoxShape3D_6eucl")
 [node name="3rd Person" type="Camera3D" parent="." unique_id=998055444]
 transform = Transform3D(-1, 1.7033856e-15, -8.742276e-08, -6.9162382e-09, 0.99686563, 0.07911256, 8.7148756e-08, 0.07911256, -0.99686563, 0.012046099, 3.0514388, -4.7837257)
 fov = 70.0
+
+[node name="Label" type="Label" parent="." unique_id=1835043040]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 125.0
+offset_bottom = 40.0
+text = "Speed: 0.0"
+label_settings = SubResource("LabelSettings_e4klq")

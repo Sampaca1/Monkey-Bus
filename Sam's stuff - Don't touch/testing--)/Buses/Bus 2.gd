@@ -5,6 +5,8 @@ extends VehicleBody3D
 @onready var br: VehicleWheel3D = $BR
 @onready var bl: VehicleWheel3D = $BL
 
+@onready var speedometer = $"Label"
+
 @onready var fws = [fl, fr]
 @onready var bws = [bl, br]
 
@@ -25,6 +27,8 @@ func exitBus(player: CharacterBody3D):
 
 func _process(delta: float) -> void:
 	if isGettingDriven:
+		var speed = -linear_velocity.dot(-global_transform.basis.z)
+		speedometer.text = "Speed: " + str(round(speed*10)/10)
 		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 
 
