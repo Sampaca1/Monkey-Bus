@@ -15,7 +15,10 @@ extends VehicleBody3D
 @onready var bws = [bl, br]
 
 @onready var lbr = $"lbr"
-@onready var rbr = $"rbr"
+
+@onready var hl1 = $"SpotLight3D"
+@onready var hl2 = $"SpotLight3D2"
+@onready var lbf = $"lbf"
 
 var SPEED = 3000
 const BRAKE = 200
@@ -63,10 +66,18 @@ func _process(delta: float) -> void:
 		
 		boost_gauge.value = boost
 		
-		if Input.is_action_pressed("backward"):
+		if Input.is_action_pressed("backward"): # don't need to toggle rbr, same mesh is used
 			lbr.mesh.material.emission_energy_multiplier = 1.0
 		else:
 			lbr.mesh.material.emission_energy_multiplier = 0.0
+			
+		if Input.is_action_just_released("headlights"):
+			hl1.visible = not hl1.visible
+			hl2.visible = not hl2.visible
+			if lbf.mesh.material.emission_energy_multiplier == 0.0: # ^ same here
+				lbf.mesh.material.emission_energy_multiplier = 1.0
+			else:
+				lbf.mesh.material.emission_energy_multiplier = 0.0
 		
 		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 		cam.fov = clamp(80 + speed*2, 80, 150)

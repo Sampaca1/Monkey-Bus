@@ -53,6 +53,7 @@ material = SubResource("StandardMaterial3D_yaorg")
 albedo_color = Color(1, 0, 0, 0.39215687)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nqowg"]
 material = SubResource("StandardMaterial3D_sgnes")
@@ -209,11 +210,11 @@ light_energy = 5.0
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.772, 0, 3.389)
 light_energy = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1257454283]
+[node name="rbf" type="MeshInstance3D" parent="." unique_id=1257454283]
 transform = Transform3D(0.208, 0, 0, 0, -1.0796442e-09, -0.2, 0, 0.024699379, -8.742278e-09, 0.79195434, 0, 3.5187707)
 mesh = SubResource("CylinderMesh_w630d")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1536264891]
+[node name="lbf" type="MeshInstance3D" parent="." unique_id=1536264891]
 transform = Transform3D(0.208, 0, 0, 0, -1.0796442e-09, -0.2, 0, 0.024699379, -8.742278e-09, -0.77209914, 0, 3.5088146)
 mesh = SubResource("CylinderMesh_w630d")
 
