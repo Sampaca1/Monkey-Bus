@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var bus: VehicleBody3D = $Bus
+@onready var bus: VehicleBody3D = $"Bus 1"
 
 @onready var chunks = [
 	preload("res://Chunks/Chunk 1.tscn"),
