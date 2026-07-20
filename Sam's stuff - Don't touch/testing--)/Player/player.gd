@@ -5,6 +5,8 @@ const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.01
 
 var in_bus := false
+var area: Area3D
+var should_enter = true
 
 @onready var camera: Camera3D = $Camera3D
 
@@ -23,7 +25,15 @@ func _physics_process(delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
+	
+	if should_enter and in_bus:
+		should_enter = false
+	
+	if area and not in_bus:
+		if area.get_overlapping_bodies().find(self) and Input.is_action_just_pressed("Exit Bus"):
+			should_enter = true
+			return
+	
 	if Input.is_action_just_pressed("Pause"):
 		paused = !paused
 	if Input.is_action_just_pressed("Exit Bus"):

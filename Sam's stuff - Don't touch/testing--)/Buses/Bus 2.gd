@@ -6,6 +6,7 @@ extends VehicleBody3D
 @onready var bl: VehicleWheel3D = $BL
 
 @onready var speedometer = $"Label"
+@onready var area = $Area3D
 
 @onready var fws = [fl, fr]
 @onready var bws = [bl, br]
@@ -26,13 +27,17 @@ func exitBus(player: CharacterBody3D):
 	isGettingDriven = false
 
 func _process(delta: float) -> void:
+	for body in get_parent().get_children():
+		if body is CharacterBody3D and body.should_enter:
+			enterBus(body)
+			body.in_bus = true
+			body.should_enter = false
+	
 	if isGettingDriven:
 		var speed = -linear_velocity.dot(-global_transform.basis.z)
 		speedometer.text = "Speed: " + str(round(speed*10)/10)
 		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 
-
 func _bodyEnteredDriverSeat(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		enterBus(body)
-		body.in_bus = true
+		body.area = area
