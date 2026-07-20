@@ -19,6 +19,7 @@ size = Vector3(50, 1, 50)
 [node name="Test 3" type="Node3D" unique_id=127635941]
 
 [node name="Bus 2" parent="." unique_id=981513023 instance=ExtResource("2_qlrvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59695256, 0)
 
 [node name="Night" parent="." unique_id=1398123842 instance=ExtResource("1_d3esb")]
 

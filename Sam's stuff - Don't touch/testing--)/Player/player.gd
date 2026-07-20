@@ -6,7 +6,7 @@ const SENSITIVITY = 0.01
 
 var in_bus := false
 var area: Area3D
-var should_enter = true
+var should_enter = false
 
 @onready var camera: Camera3D = $Camera3D
 
