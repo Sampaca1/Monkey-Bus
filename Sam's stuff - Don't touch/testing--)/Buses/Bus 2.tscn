@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Resources/Basic Bus.fbx" id="2_ptnoe"]
 [ext_resource type="Script" uid="uid://5nex7vgddppk" path="res://Buses/pivot.gd" id="3_lb1jy"]
 [ext_resource type="Script" uid="uid://td1bupkb8iwn" path="res://Buses/progress_bar.gd" id="3_ptnoe"]
+[ext_resource type="Texture2D" uid="uid://bcayhkj3tpavc" path="res://Resources/monkeyplate.png" id="5_ikftv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytexw"]
 albedo_color = Color(0, 0, 0, 1)
@@ -243,5 +244,9 @@ mesh = SubResource("BoxMesh_m0rtx")
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=585246804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.03345973, 0, 0.078678265, 3.5393233)
 mesh = SubResource("BoxMesh_m0rtx")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=938706295]
+transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, 0.0007227659, 0, -3.504627)
+texture = ExtResource("5_ikftv")
 
 [connection signal="body_entered" from="Area3D" to="." method="_bodyEnteredDriverSeat"]

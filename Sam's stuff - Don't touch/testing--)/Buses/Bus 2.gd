@@ -36,10 +36,11 @@ func exitBus(player: CharacterBody3D):
 
 func _process(delta: float) -> void:
 	for body in get_parent().get_children():
-		if body is CharacterBody3D and body.should_enter:
-			enterBus(body)
-			body.in_bus = true
-			body.should_enter = false
+		if body is CharacterBody3D:
+			if body.should_enter:
+				enterBus(body)
+				body.in_bus = true
+				body.should_enter = false
 	
 	if isGettingDriven:
 		speedometer.visible = true
