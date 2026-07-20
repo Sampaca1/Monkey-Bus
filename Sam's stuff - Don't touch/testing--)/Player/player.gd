@@ -30,15 +30,18 @@ func _physics_process(delta: float) -> void:
 		should_enter = false
 	
 	if area and not in_bus:
-		if area.get_overlapping_bodies().find(self) and Input.is_action_just_pressed("Exit Bus"):
+		if area.overlaps_body(self) and Input.is_action_just_pressed("Exit Bus"):
 			should_enter = true
 			return
+			
+	should_enter = false
 	
 	if Input.is_action_just_pressed("Pause"):
 		paused = !paused
 	if Input.is_action_just_pressed("Exit Bus"):
 		get_tree().get_first_node_in_group("Bus").isGettingDriven = false
 		in_bus = false
+		should_enter = false
 	if in_bus:
 		camera.current = false
 	else:
