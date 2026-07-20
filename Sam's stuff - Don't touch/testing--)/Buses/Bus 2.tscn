@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://4u1hwk2wyo3d" path="res://Buses/Bus 2.gd" id="1_d3h1w"]
 [ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Resources/Basic Bus.fbx" id="2_ptnoe"]
+[ext_resource type="Script" uid="uid://td1bupkb8iwn" path="res://Buses/progress_bar.gd" id="3_ptnoe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytexw"]
 albedo_color = Color(0, 0, 0, 1)
@@ -28,6 +29,11 @@ size = Vector3(0.20648193, 1.4436646, 6.989746)
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d3h1w"]
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lb1jy"]
 font_size = 24
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
@@ -144,5 +150,21 @@ offset_right = 125.0
 offset_bottom = 40.0
 text = "Speed: 0.0"
 label_settings = SubResource("LabelSettings_d3h1w")
+
+[node name="Label3" type="Label" parent="." unique_id=400403148]
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 125.0
+offset_bottom = 80.0
+text = "Boost: "
+label_settings = SubResource("LabelSettings_lb1jy")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=17341773]
+offset_left = 89.0
+offset_top = 51.0
+offset_right = 392.0
+offset_bottom = 78.0
+value = 100.0
+script = ExtResource("3_ptnoe")
 
 [connection signal="body_entered" from="Area3D" to="." method="_bodyEnteredDriverSeat"]
