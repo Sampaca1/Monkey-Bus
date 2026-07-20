@@ -8,11 +8,14 @@ extends VehicleBody3D
 @onready var speedometer = $"Label"
 @onready var boost_text = $"Label3"
 @onready var area = $Area3D
-@onready var cam = $"3rd Person"
+@onready var cam = $"pivot/3rd Person"
 @onready var boost_gauge = $ProgressBar
 
 @onready var fws = [fl, fr]
 @onready var bws = [bl, br]
+
+@onready var lbr = $"lbr"
+@onready var rbr = $"rbr"
 
 var SPEED = 3000
 const BRAKE = 200
@@ -26,7 +29,7 @@ var isGettingDriven := false
 
 func enterBus(player: CharacterBody3D):
 	isGettingDriven = true
-	$"3rd Person".current = true
+	cam.current = true
 
 func exitBus(player: CharacterBody3D):
 	isGettingDriven = false
@@ -59,13 +62,17 @@ func _process(delta: float) -> void:
 		
 		boost_gauge.value = boost
 		
+		if Input.is_action_pressed("backward"):
+			lbr.mesh.material.emission_energy_multiplier = 1.0
+		else:
+			lbr.mesh.material.emission_energy_multiplier = 0.0
+		
 		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 		cam.fov = clamp(80 + speed*2, 80, 150)
 	else:
 		speedometer.visible = false
 		boost_gauge.visible = false
 		boost_text.visible = false
-		
 
 func _bodyEnteredDriverSeat(body: Node3D) -> void:
 	if body is CharacterBody3D:
