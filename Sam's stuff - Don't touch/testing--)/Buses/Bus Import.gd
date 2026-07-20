@@ -52,7 +52,7 @@ static func stopSteering(frontWheels, SPEED):
 static var braking = false
 
 static func inputAndMove(frontWheels, backWheels, SPEED, BRAKE, STEER, MAXSTEER, linear_velocity, rotation, delta, global_transform):
-	var speed = -linear_velocity.dot(-global_transform.basis.z)
+	var speed = linear_velocity.dot(global_transform.basis.z)
 	
 	if Input.is_action_pressed("forward"):
 		accelerate(backWheels, SPEED)

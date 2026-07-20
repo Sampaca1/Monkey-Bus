@@ -27,7 +27,7 @@ func exitBus(player: CharacterBody3D):
 
 func _process(delta: float) -> void:
 	if isGettingDriven:
-		var speed = -linear_velocity.dot(-global_transform.basis.z)
+		var speed = linear_velocity.dot(global_transform.basis.z)
 		speedometer.text = "Speed: " + str(round(speed*10)/10)
 		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 
