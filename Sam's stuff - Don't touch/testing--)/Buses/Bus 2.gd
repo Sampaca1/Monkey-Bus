@@ -6,6 +6,7 @@ extends VehicleBody3D
 @onready var bl: VehicleWheel3D = $BL
 
 @onready var speedometer = $"Label"
+@onready var boost_text = $"Label3"
 @onready var area = $Area3D
 @onready var cam = $"3rd Person"
 @onready var boost_gauge = $ProgressBar
@@ -38,6 +39,10 @@ func _process(delta: float) -> void:
 			body.should_enter = false
 	
 	if isGettingDriven:
+		speedometer.visible = true
+		boost_gauge.visible = true
+		boost_text.visible = true
+		
 		var speed = -linear_velocity.dot(-global_transform.basis.z)
 		speedometer.text = "Speed: " + str(round(speed*10)/10)
 		
@@ -56,6 +61,11 @@ func _process(delta: float) -> void:
 		
 		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 		cam.fov = clamp(80 + speed*2, 80, 150)
+	else:
+		speedometer.visible = false
+		boost_gauge.visible = false
+		boost_text.visible = false
+		
 
 func _bodyEnteredDriverSeat(body: Node3D) -> void:
 	if body is CharacterBody3D:
