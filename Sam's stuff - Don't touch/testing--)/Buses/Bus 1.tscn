@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi4hqxtop1vu" path="res://Buses/Bus 1.gd" id="1_44mfa"]
 [ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Resources/Basic Bus.fbx" id="2_2tqcl"]
+[ext_resource type="Script" uid="uid://td1bupkb8iwn" path="res://Buses/progress_bar.gd" id="3_p3426"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytexw"]
 albedo_color = Color(0, 0, 0, 1)
@@ -33,6 +34,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.253, 2.97)
 use_as_steering = true
 wheel_radius = 0.35
+wheel_friction_slip = 5.0
 suspension_travel = 0.25
 suspension_stiffness = 100.0
 suspension_max_force = 8000.0
@@ -47,6 +49,7 @@ mesh = SubResource("CylinderMesh_6eucl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.253, 2.952)
 use_as_steering = true
 wheel_radius = 0.35
+wheel_friction_slip = 5.0
 suspension_travel = 0.25
 suspension_stiffness = 100.0
 suspension_max_force = 8000.0
@@ -61,6 +64,7 @@ mesh = SubResource("CylinderMesh_6eucl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.25, -3)
 use_as_traction = true
 wheel_radius = 0.35
+wheel_friction_slip = 5.0
 suspension_travel = 0.25
 suspension_stiffness = 100.0
 suspension_max_force = 8000.0
@@ -75,6 +79,7 @@ mesh = SubResource("CylinderMesh_6eucl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.25, -3)
 use_as_traction = true
 wheel_radius = 0.35
+wheel_friction_slip = 5.0
 suspension_travel = 0.25
 suspension_stiffness = 100.0
 suspension_max_force = 8000.0
@@ -100,3 +105,19 @@ offset_right = 125.0
 offset_bottom = 40.0
 text = "Speed: 0.0"
 label_settings = SubResource("LabelSettings_e4klq")
+
+[node name="Label2" type="Label" parent="." unique_id=673324990]
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 125.0
+offset_bottom = 80.0
+text = "Boost: "
+label_settings = SubResource("LabelSettings_e4klq")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1584203119]
+offset_left = 89.0
+offset_top = 51.0
+offset_right = 392.0
+offset_bottom = 78.0
+value = 100.0
+script = ExtResource("3_p3426")
