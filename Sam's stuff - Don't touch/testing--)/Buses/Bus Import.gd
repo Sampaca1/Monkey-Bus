@@ -1,6 +1,8 @@
 extends Resource
 class_name Bus
 
+const MIN_FOV = 70
+
 static func is_true(variable) -> bool:
 	if variable:
 		return true
@@ -47,17 +49,24 @@ static func stopSteering(frontWheels, SPEED):
 	for wheel in frontWheels:
 		wheel.steering = move_toward(wheel.steering, 0, SPEED)
 
-static func inputAndMove(frontWheels, backWheels, SPEED, BRAKE, STEER, MAXSTEER, linear_velocity, rotation, delta):
+static var braking = false
+
+static func inputAndMove(frontWheels, backWheels, SPEED, BRAKE, STEER, MAXSTEER, linear_velocity, rotation, delta, global_transform):
+	var speed = -linear_velocity.dot(-global_transform.basis.z)
+	
 	if Input.is_action_pressed("forward"):
 		accelerate(backWheels, SPEED)
-	else:
+	elif not braking:
 		stopAcceleration(backWheels)
 	if Input.is_action_pressed("backward"):
+		braking = true
 		if Bus.is_moving_forward(linear_velocity, rotation.y):
+			stopAcceleration(backWheels)
 			brake(backWheels, BRAKE)
 		else:
 			accelerate(backWheels, -SPEED/2)
 	else:
+		braking = false
 		stopBrakes(backWheels)
 	if Input.is_action_pressed("left"):
 		turnLeft(frontWheels, STEER, MAXSTEER, delta)

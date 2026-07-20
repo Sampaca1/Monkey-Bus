@@ -25,7 +25,7 @@ func exitBus(player: CharacterBody3D):
 
 func _process(delta: float) -> void:
 	if isGettingDriven:
-		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta)
+		Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 
 
 func _bodyEnteredDriverSeat(body: Node3D) -> void:
