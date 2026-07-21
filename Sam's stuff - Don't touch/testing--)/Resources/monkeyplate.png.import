@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m3vgg33hyd8y"
-path.s3tc="res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"
+uid="uid://bcayhkj3tpavc"
+path.s3tc="res://.godot/imported/monkeyplate.png-bfbca924eb585983d3786c0dd8a29364.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://logo.png"
-dest_files=["res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"]
+source_file="res://Resources/monkeyplate.png"
+dest_files=["res://.godot/imported/monkeyplate.png-bfbca924eb585983d3786c0dd8a29364.s3tc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

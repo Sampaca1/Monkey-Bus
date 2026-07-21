@@ -8,18 +8,9 @@ static func is_true(variable) -> bool:
 		return true
 	return false
 
-static func is_moving_forward(linear_velocity, direction):
-	var x = linear_velocity.x
-	var z = linear_velocity.z
-	var list = [
-		((0 <= direction) and (direction < 90)) and (x >= 0 and z >= 0),
-		((90 <= direction) and (direction < 180)) and (x >= 0 and z <= 0),
-		((0 >= direction) and (direction > -90)) and (x <= 0 and z >= 0),
-		((-90 >= direction) and (direction > -180)) and (x <= 0 and z <= 0)
-	]
-	if list.any(is_true) and linear_velocity != Vector3.ZERO:
-		return true
-	return false
+static func is_moving_forward(linear_velocity, global_transform):
+	var speed = -linear_velocity.dot(-global_transform.basis.z)
+	return speed > 0
 
 static func accelerate(backWheels, SPEED):
 	for wheel in backWheels:
@@ -31,7 +22,7 @@ static func stopAcceleration(backWheels):
 
 static func brake(backWheels, STRENGTH):
 	for wheel in backWheels:
-			wheel.brake = STRENGTH
+		wheel.brake = STRENGTH
 
 static func stopBrakes(backWheels):
 	for wheel in backWheels:
@@ -48,6 +39,12 @@ static func turnRight(frontWheels, SPEED, MAXTURN, delta):
 static func stopSteering(frontWheels, SPEED):
 	for wheel in frontWheels:
 		wheel.steering = move_toward(wheel.steering, 0, SPEED)
+		
+static func setFriction(frontWheels, backWheels, friction=10.5):
+	for wheel in backWheels:
+		wheel.wheel_friction_slip = friction
+	for wheel in backWheels:
+		wheel.wheel_friction_slip = friction
 
 static var braking = false
 
@@ -60,7 +57,7 @@ static func inputAndMove(frontWheels, backWheels, SPEED, BRAKE, STEER, MAXSTEER,
 		stopAcceleration(backWheels)
 	if Input.is_action_pressed("backward"):
 		braking = true
-		if Bus.is_moving_forward(linear_velocity, rotation.y):
+		if Bus.is_moving_forward(linear_velocity, global_transform):
 			stopAcceleration(backWheels)
 			brake(backWheels, BRAKE)
 		else:
@@ -74,3 +71,14 @@ static func inputAndMove(frontWheels, backWheels, SPEED, BRAKE, STEER, MAXSTEER,
 		turnRight(frontWheels, STEER, MAXSTEER, delta)
 	else:
 		stopSteering(frontWheels, 0.05)
+		
+	if Input.is_action_pressed("handbrake"):
+		if Bus.is_moving_forward(linear_velocity, global_transform):
+			setFriction(frontWheels, backWheels, 1)
+			brake(frontWheels, BRAKE/4)
+			brake(backWheels, BRAKE/5)
+	else:
+		setFriction(frontWheels, backWheels, 4)
+		if not braking:
+			stopBrakes(frontWheels)
+			stopBrakes(backWheels)

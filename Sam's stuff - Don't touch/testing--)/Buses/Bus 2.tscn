@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://4u1hwk2wyo3d" path="res://Buses/Bus 2.gd" id="1_d3h1w"]
 [ext_resource type="PackedScene" uid="uid://d3w7i4yy5mcgc" path="res://Resources/Basic Bus.fbx" id="2_ptnoe"]
+[ext_resource type="Script" uid="uid://5nex7vgddppk" path="res://Buses/pivot.gd" id="3_lb1jy"]
+[ext_resource type="Script" uid="uid://td1bupkb8iwn" path="res://Buses/progress_bar.gd" id="3_ptnoe"]
+[ext_resource type="Texture2D" uid="uid://bcayhkj3tpavc" path="res://Resources/monkeyplate.png" id="5_ikftv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytexw"]
 albedo_color = Color(0, 0, 0, 1)
@@ -31,6 +34,41 @@ size = Vector3(0.5, 0.5, 0.5)
 font_size = 24
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lb1jy"]
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yaorg"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.39215687)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w630d"]
+material = SubResource("StandardMaterial3D_yaorg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgnes"]
+albedo_color = Color(1, 0, 0, 0.39215687)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nqowg"]
+material = SubResource("StandardMaterial3D_sgnes")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_akfk1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w630d"]
+albedo_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
+metallic = 0.49
+metallic_texture_channel = 4
+detail_mask = SubResource("CanvasTexture_akfk1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_m0rtx"]
+material = SubResource("StandardMaterial3D_w630d")
+size = Vector3(1, 0.021484375, 0.9005127)
 
 [node name="Bus 2" type="VehicleBody3D" unique_id=981513023 groups=["Bus"]]
 mass = 1000.0
@@ -97,8 +135,11 @@ damping_relaxation = 20.0
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_6eucl")
 
-[node name="3rd Person" type="Camera3D" parent="." unique_id=998055444]
-transform = Transform3D(-1, 1.7033856e-15, -8.742276e-08, -6.9162382e-09, 0.99686563, 0.07911256, 8.7148756e-08, 0.07911256, -0.99686563, 0.012046099, 3.0514388, -4.7837257)
+[node name="pivot" type="Node3D" parent="." unique_id=765481927]
+script = ExtResource("3_lb1jy")
+
+[node name="3rd Person" type="Camera3D" parent="pivot" unique_id=998055444]
+transform = Transform3D(-1, 1.2592964e-15, -8.742276e-08, -6.9162382e-09, 0.9968657, 0.07911257, 8.7148756e-08, 0.07911257, -0.9968657, 0.012, 3.051, -4.445229)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=99238439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0025634766, -0.2267456, 0)
@@ -144,5 +185,69 @@ offset_right = 125.0
 offset_bottom = 40.0
 text = "Speed: 0.0"
 label_settings = SubResource("LabelSettings_d3h1w")
+
+[node name="Label3" type="Label" parent="." unique_id=400403148]
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 125.0
+offset_bottom = 80.0
+text = "Boost: "
+label_settings = SubResource("LabelSettings_lb1jy")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=17341773]
+offset_left = 89.0
+offset_top = 51.0
+offset_right = 392.0
+offset_bottom = 78.0
+value = 100.0
+script = ExtResource("3_ptnoe")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=789116133]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.79195434, 0, 3.3894012)
+light_energy = 5.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1221745650]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.772, 0, 3.389)
+light_energy = 5.0
+
+[node name="rbf" type="MeshInstance3D" parent="." unique_id=1257454283]
+transform = Transform3D(0.208, 0, 0, 0, -1.0796442e-09, -0.2, 0, 0.024699379, -8.742278e-09, 0.79195434, 0, 3.5187707)
+mesh = SubResource("CylinderMesh_w630d")
+
+[node name="lbf" type="MeshInstance3D" parent="." unique_id=1536264891]
+transform = Transform3D(0.208, 0, 0, 0, -1.0796442e-09, -0.2, 0, 0.024699379, -8.742278e-09, -0.77209914, 0, 3.5088146)
+mesh = SubResource("CylinderMesh_w630d")
+
+[node name="rbr" type="MeshInstance3D" parent="." unique_id=1553212303]
+transform = Transform3D(0.208, 0, 0, 0, -1.0796442e-09, -0.2, 0, 0.024699379, -8.742278e-09, -0.77209914, 0, -3.5131228)
+mesh = SubResource("CylinderMesh_nqowg")
+
+[node name="lbr" type="MeshInstance3D" parent="." unique_id=324033903]
+transform = Transform3D(0.208, 0, 0, 0, -1.0796442e-09, -0.2, 0, 0.024699379, -8.742278e-09, 0.7889321, 0, -3.5131228)
+mesh = SubResource("CylinderMesh_nqowg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1405918361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.03345973, 0, -0.09426418, 3.5393233)
+mesh = SubResource("BoxMesh_m0rtx")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1398857487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.03345973, 0, -0.053028136, 3.5393233)
+mesh = SubResource("BoxMesh_m0rtx")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1185707758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.03345973, 0, -0.0067231804, 3.5393233)
+mesh = SubResource("BoxMesh_m0rtx")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1793425916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.03345973, 0, 0.037442222, 3.5393233)
+mesh = SubResource("BoxMesh_m0rtx")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=585246804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.03345973, 0, 0.078678265, 3.5393233)
+mesh = SubResource("BoxMesh_m0rtx")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=938706295]
+transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, 0.0007227659, 0, -3.504627)
+texture = ExtResource("5_ikftv")
 
 [connection signal="body_entered" from="Area3D" to="." method="_bodyEnteredDriverSeat"]

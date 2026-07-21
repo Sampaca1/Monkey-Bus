@@ -10,16 +10,33 @@ extends VehicleBody3D
 
 @onready var cam = $"3rd Person"
 @onready var speedometer = $"Label"
+@onready var boost_gauge = $ProgressBar
 
-const SPEED = 3000
+var SPEED = 3000
 const BRAKE = 250
 const STEER = 0.5
 
 var maxSteer = 30
+var boost = 100
+var boosting = false
 
 func _process(delta: float) -> void:
-	var speed = linear_velocity.dot(global_transform.basis.z)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var speed = -linear_velocity.dot(-global_transform.basis.z)
 	speedometer.text = "Speed: " + str(round(speed*10)/10)
+	
+	if boost < 100 and not boosting:
+		boost += 4*delta
+	
+	if Input.is_action_pressed("boost") and boost > 0:
+		boosting = true
+		SPEED = 9000
+		boost -= 32*delta
+	else:
+		boosting = false
+		SPEED = 3000
+	
+	boost_gauge.value = boost
 	
 	Bus.inputAndMove(fws, bws, SPEED, BRAKE, STEER, maxSteer, linear_velocity, rotation, delta, global_transform)
 	cam.fov = clamp(80 + speed*2, 80, 150)
