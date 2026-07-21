@@ -13,7 +13,7 @@ var should_enter = false
 var paused := false
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and !paused:
+	if event is InputEventMouseMotion and !paused and not in_bus:
 		rotate_y(-event.relative.x * SENSITIVITY)
 		
 		camera.rotation.x -= event.relative.y * SENSITIVITY
@@ -47,7 +47,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		camera.current = true
 		
-		
+		if in_bus:
+			return
 		
 		if not is_on_floor():
 			velocity += get_gravity() * delta

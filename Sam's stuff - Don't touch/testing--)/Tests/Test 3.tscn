@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ghod8irdbj85"]
 
-[ext_resource type="PackedScene" uid="uid://daauoyyq13ysn" path="res://Other Scenes/night.tscn" id="1_d3esb"]
+[ext_resource type="PackedScene" uid="uid://opkn3d0b438i" path="res://Other Scenes/sunrise.tscn" id="2_d3esb"]
 [ext_resource type="PackedScene" uid="uid://ct5b2snv78yva" path="res://Buses/Bus 2.tscn" id="2_qlrvl"]
 [ext_resource type="PackedScene" uid="uid://2ov3bnd4tiec" path="res://Player/player.tscn" id="3_cfrs3"]
 [ext_resource type="Texture2D" uid="uid://cnbbdrh6notqd" path="res://icon.svg" id="3_d3esb"]
@@ -21,7 +21,9 @@ size = Vector3(50, 1, 50)
 [node name="Bus 2" parent="." unique_id=981513023 instance=ExtResource("2_qlrvl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59695256, 0)
 
-[node name="Night" parent="." unique_id=1398123842 instance=ExtResource("1_d3esb")]
+[node name="Sunrise" parent="." unique_id=1398123842 instance=ExtResource("2_d3esb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59695256, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1052279769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

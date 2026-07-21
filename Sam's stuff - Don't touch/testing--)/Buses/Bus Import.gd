@@ -22,7 +22,7 @@ static func stopAcceleration(backWheels):
 
 static func brake(backWheels, STRENGTH):
 	for wheel in backWheels:
-			wheel.brake = STRENGTH
+		wheel.brake = STRENGTH
 
 static func stopBrakes(backWheels):
 	for wheel in backWheels:
