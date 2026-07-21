@@ -21,6 +21,7 @@ var boost = 100
 var boosting = false
 
 func _process(delta: float) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var speed = -linear_velocity.dot(-global_transform.basis.z)
 	speedometer.text = "Speed: " + str(round(speed*10)/10)
 	
