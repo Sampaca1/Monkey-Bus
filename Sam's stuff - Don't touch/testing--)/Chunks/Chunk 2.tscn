@@ -2,7 +2,36 @@
 
 [ext_resource type="Script" uid="uid://beyc0csn6jou2" path="res://Chunks/Scripts/chunk_2.gd" id="1_lrpsj"]
 
+[sub_resource type="Gradient" id="Gradient_r8hhf"]
+offsets = PackedFloat32Array(0, 0.44927537, 1)
+colors = PackedColorArray(0.1950917, 0.41, 0.06149999, 1, 0.24111488, 0.43545455, 0.009318184, 1, 0.025666641, 0.77, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lnueg"]
+frequency = 0.3123
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xnmqu"]
+noise = SubResource("FastNoiseLite_lnueg")
+color_ramp = SubResource("Gradient_r8hhf")
+
+[sub_resource type="Gradient" id="Gradient_lrpsj"]
+offsets = PackedFloat32Array(0, 0.5289855, 1)
+colors = PackedColorArray(0.1950917, 0.41, 0.06149999, 1, 0.24111488, 0.43545455, 0.009318184, 1, 0.025666641, 0.77, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7fhvr"]
+frequency = 0.3123
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lnueg"]
+noise = SubResource("FastNoiseLite_7fhvr")
+color_ramp = SubResource("Gradient_lrpsj")
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3722a"]
+albedo_texture = SubResource("NoiseTexture2D_xnmqu")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_lnueg")
+
 [sub_resource type="BoxMesh" id="BoxMesh_lrpsj"]
+material = SubResource("StandardMaterial3D_3722a")
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7fhvr"]

@@ -20,6 +20,8 @@ var maxSteer = 30
 var boost = 100
 var boosting = false
 
+var infiniteBoost = true
+
 func _process(delta: float) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var speed = -linear_velocity.dot(-global_transform.basis.z)
@@ -31,7 +33,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("boost") and boost > 0:
 		boosting = true
 		SPEED = 9000
-		boost -= 32*delta
+		if !infiniteBoost:
+			boost -= 32*delta
 	else:
 		boosting = false
 		SPEED = 3000
