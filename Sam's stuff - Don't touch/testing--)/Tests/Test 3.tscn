@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://2ov3bnd4tiec" path="res://Player/player.tscn" id="3_cfrs3"]
 [ext_resource type="Texture2D" uid="uid://cnbbdrh6notqd" path="res://icon.svg" id="3_d3esb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikftv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3esb"]
 albedo_texture = ExtResource("3_d3esb")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_6eucl"]
-material = SubResource("StandardMaterial3D_ikftv")
+material = SubResource("StandardMaterial3D_d3esb")
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cfrs3"]
