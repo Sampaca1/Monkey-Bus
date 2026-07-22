@@ -9,6 +9,7 @@ var area: Area3D
 var should_enter = false
 
 @onready var camera: Camera3D = $Camera3D
+@onready var col_shape: CollisionShape3D = $CollisionShape3D
 
 var paused := false
 
@@ -39,26 +40,33 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		paused = !paused
 	if Input.is_action_just_pressed("Exit Bus"):
+		if in_bus:
+			position = get_tree().get_first_node_in_group("Bus").find_child("driver_seat").global_position
 		get_tree().get_first_node_in_group("Bus").isGettingDriven = false
 		in_bus = false
 		should_enter = false
 	if in_bus:
+		visible = false
+		col_shape.disabled = true
 		camera.current = false
-	else:
-		camera.current = true
-		
-		if in_bus:
-			return
 		
 		if not is_on_floor():
 			velocity += get_gravity() * delta
-
-		# Handle jump.
+			
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		move_and_slide()
+	else:
+		visible = true
+		col_shape.disabled = false
+		camera.current = true
+		
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		
 		if Input.is_action_just_pressed("action") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir := Input.get_vector("right", "left", "backward", "forward")
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
