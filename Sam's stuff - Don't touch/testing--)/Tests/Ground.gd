@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@onready var bus: VehicleBody3D = $"../Bus 1"
+@onready var bus: VehicleBody3D = $"../Bus"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -7,7 +7,7 @@
 [node name="Test 2" type="Node3D" unique_id=575977860]
 script = ExtResource("1_y77e0")
 
-[node name="Bus 1" parent="." unique_id=981513023 instance=ExtResource("2_1slih")]
+[node name="Bus" parent="." unique_id=981513023 instance=ExtResource("2_1slih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6292279, 0)
 
 [node name="Sunset" parent="." unique_id=228540117 instance=ExtResource("3_4qf0y")]
