@@ -1,12 +1,13 @@
-[gd_scene format=3 uid="uid://dmr0rnld4uojx"]
+[gd_scene format=3 uid="uid://c7qtnbdiki1my"]
 
-[ext_resource type="PackedScene" uid="uid://e2o2hesat4ju" path="res://Other Scenes/sunset.tscn" id="1_dwukc"]
-[ext_resource type="PackedScene" uid="uid://rr8k0qwuj6fv" path="res://Buses/Bus 1.tscn" id="1_p44s2"]
-[ext_resource type="Texture2D" uid="uid://cnbbdrh6notqd" path="res://icon.svg" id="2_dwukc"]
-[ext_resource type="Script" uid="uid://cnxk6rg3ytdqt" path="res://Tests/Ground.gd" id="3_0r3ap"]
+[ext_resource type="PackedScene" uid="uid://e2o2hesat4ju" path="res://Other Scenes/sunset.tscn" id="1_pcyxt"]
+[ext_resource type="PackedScene" uid="uid://2ov3bnd4tiec" path="res://Player/player.tscn" id="1_yuycd"]
+[ext_resource type="PackedScene" uid="uid://ct5b2snv78yva" path="res://Buses/Bus 2.tscn" id="2_p5lcp"]
+[ext_resource type="Texture2D" uid="uid://cnbbdrh6notqd" path="res://icon.svg" id="3_p5lcp"]
+[ext_resource type="Script" uid="uid://cnxk6rg3ytdqt" path="res://Tests/Ground.gd" id="4_eihge"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fji6l"]
-albedo_texture = ExtResource("2_dwukc")
+albedo_texture = ExtResource("3_p5lcp")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_6eucl"]
@@ -22,14 +23,18 @@ data = PackedVector3Array(-25, 0.5, 25, 25, 0.5, 25, -25, -0.5, 25, 25, 0.5, 25,
 
 [node name="Test 1" type="Node3D" unique_id=2027359982]
 
-[node name="Sunset" parent="." unique_id=228540117 instance=ExtResource("1_dwukc")]
+[node name="Player" parent="." unique_id=263858331 instance=ExtResource("1_yuycd")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0.1714583, 0.9121029, 1.7896491)
 
-[node name="Bus" parent="." unique_id=981513023 instance=ExtResource("1_p44s2")]
+[node name="Bus" parent="." unique_id=981513023 instance=ExtResource("2_p5lcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59925795, 0)
+
+[node name="Sunset" parent="." unique_id=228540117 instance=ExtResource("1_pcyxt")]
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1819081739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_6eucl")
-script = ExtResource("3_0r3ap")
+script = ExtResource("4_eihge")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=1120356220]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -246,3 +251,6 @@ mesh = SubResource("BoxMesh_srwig")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boxes/Box 15" unique_id=237746224]
 shape = SubResource("BoxShape3D_ytexw")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1239260687]
+spawn_path = NodePath("../Player")

@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://2ov3bnd4tiec" path="res://Player/player.tscn" id="3_cfrs3"]
 [ext_resource type="Texture2D" uid="uid://cnbbdrh6notqd" path="res://icon.svg" id="3_d3esb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikftv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3esb"]
 albedo_texture = ExtResource("3_d3esb")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_6eucl"]
-material = SubResource("StandardMaterial3D_ikftv")
+material = SubResource("StandardMaterial3D_d3esb")
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cfrs3"]
@@ -18,7 +18,7 @@ size = Vector3(50, 1, 50)
 
 [node name="Test 3" type="Node3D" unique_id=127635941]
 
-[node name="Bus 2" parent="." unique_id=981513023 instance=ExtResource("2_qlrvl")]
+[node name="Bus" parent="." unique_id=981513023 instance=ExtResource("2_qlrvl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59695256, 0)
 
 [node name="Sunrise" parent="." unique_id=1398123842 instance=ExtResource("2_d3esb")]

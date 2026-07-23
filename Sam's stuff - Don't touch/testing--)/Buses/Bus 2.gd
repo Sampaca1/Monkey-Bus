@@ -7,7 +7,7 @@ extends VehicleBody3D
 
 @onready var speedometer = $"Label"
 @onready var boost_text = $"Label3"
-@onready var area = $Area3D
+@onready var area = $driver_seat
 @onready var cam = $"pivot/3rd Person"
 @onready var boost_gauge = $ProgressBar
 
@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		boost_gauge.value = boost
 		
 		if Input.is_action_pressed("backward"): # don't need to toggle rbr, same mesh is used
-			lbr.mesh.material.emission_energy_multiplier = 1.0
+			lbr.mesh.material.emission_energy_multiplier = 10.0
 		else:
 			lbr.mesh.material.emission_energy_multiplier = 0.0
 			
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 			hl1.visible = not hl1.visible
 			hl2.visible = not hl2.visible
 			if lbf.mesh.material.emission_energy_multiplier == 0.0: # ^ same here
-				lbf.mesh.material.emission_energy_multiplier = 1.0
+				lbf.mesh.material.emission_energy_multiplier = 10.0
 			else:
 				lbf.mesh.material.emission_energy_multiplier = 0.0
 		
