@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Monkey Bus Testing !"
-run/main_scene="uid://cc4w6j388l4x7"
+run/main_scene="uid://bm3d6ae76klng"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*uid://cdm1p3ak8g2v1"
+MultiplayerManager="*uid://qfva37x74t0v"
 
 [global_group]
 

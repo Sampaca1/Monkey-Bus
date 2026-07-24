@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8ekuytya1qmc"]
+
+[ext_resource type="Script" uid="uid://bvvk84l6fwiyn" path="res://Multiplayer shat/Startup.gd" id="1_hk56u"]
+[ext_resource type="PackedScene" uid="uid://bm3d6ae76klng" path="res://Multiplayer shat/Menu.tscn" id="2_8cyyi"]
+
+[node name="Startup" type="Node" unique_id=1051607787]
+script = ExtResource("1_hk56u")
+
+[node name="Level" type="Node" parent="." unique_id=231546943]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1330946625]
+_spawnable_scenes = PackedStringArray("res://Tests/Test 5.tscn")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
+
+[node name="Control" parent="." unique_id=165587927 instance=ExtResource("2_8cyyi")]

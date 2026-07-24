@@ -13,6 +13,9 @@ var should_enter = false
 
 var paused := false
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and !paused and not in_bus:
 		rotate_y(-event.relative.x * SENSITIVITY)
@@ -22,11 +25,11 @@ func _input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _physics_process(delta: float) -> void:
+	#if !is_multiplayer_authority(): return
 	if !paused:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
 	if should_enter and in_bus:
 		should_enter = false
 	

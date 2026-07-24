@@ -18,6 +18,17 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4ntmi"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="Player" type="CharacterBody3D" unique_id=263858331]
 script = ExtResource("1_l8h54")
 
@@ -29,6 +40,11 @@ mesh = SubResource("CapsuleMesh_ytexw")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1174803557]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.2465221, 0.15784267)
+current = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1760545009]
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1760545009]
 replication_config = SubResource("SceneReplicationConfig_l8h54")
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="." unique_id=557864564]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_4ntmi")
